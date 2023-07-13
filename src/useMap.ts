@@ -28,14 +28,10 @@ function useMap(changeMap: (apiKey: string) => Promise<void>) {
     void changeMap(apiKey);
   };
 
-  const allowedExtensions = ["csv"];
   const handlePointsCSV = (e: React.ChangeEvent<HTMLInputElement>): void => {
     if (checkMap() || !e.target.files?.length) return;
 
     const inputFile = e.target.files[0];
-    const fileExtension = inputFile.type.split("/")[1];
-    if (!allowedExtensions.includes(fileExtension))
-      return alert("Archivo debe ser un CSV");
 
     const reader = new FileReader();
     reader.readAsText(inputFile);
